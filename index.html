@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Expense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+    
+</head>
+<body>
+    <div>
+        <div>
+            <input id="expenseDescription" type="text" />
+            <input id="inputAmount" type="text" />
+            <button id="addExpense">+</button>
+        </div>
+        <div>
+            <h3 id="desc"></h3>
+            <h3 id="amt"></h3>
+        </div>
+        <div id="expenseTable"></div>
+        <div>
+            <h1 id="total"></h1>
+        </div>
+    </div>
+    <script>
+        const totalHeadingElement = document.querySelector("#total");
+        let totalExp = 0;
+        totalHeadingElement.textContent = totalExp;
+        const allExpense = [];
+
+        const descContent = document.querySelector("#desc");
+        const eachAmount = document.querySelector("#amt");
+
+        function addExpenseToTotal(){
+            const expenseItem = {};
+            const descriptionElement = document.querySelector("#expenseDescription");
+            const description = descriptionElement.value;
+            const inputElement = document.querySelector("#inputAmount");
+            const expense = inputElement.value; // gives a string value            
+            const amount = parseInt(expense, 10); // convert string to  number
+            const expnTable = document.querySelector("#expenseTable");
+
+            // put desc and amt in object
+            expenseItem.descContent = description;
+            expenseItem.eachAmount = amount;
+            // push mutiple expense objects to array
+            allExpense.push(expenseItem);
+            // calculating total expense
+            totalExp = totalExp + amount;
+
+            // writing to DOM
+            const totalAmt = `Total: ${totalExp}`
+            totalHeadingElement.textContent = totalAmt;
+
+            // show expense in a tabular format
+            const allExpenseHTML = allExpense.map(exp => {
+                return `<div>${exp.descContent} : ${exp.eachAmount}</div>`
+            });
+            const joinAllExpense = allExpenseHTML.join("");
+            expnTable.innerHTML = joinAllExpense; // innerHTML is required else <div> will also display in DOM
+
+        } 
+        // getting the button element
+        const btnElement = document.querySelector("#addExpense");
+        // Listening to click event
+        btnElement.addEventListener("click", addExpenseToTotal, false);       
+    </script>
+</body>
+</html>
