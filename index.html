@@ -12,30 +12,34 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url(http://s1.picswalls.com/wallpapers/2014/08/11/money-background_090605847_192.jpg);
         }
     </style>
     
 </head>
 <body>
-    <div>
+    <div style="border: 1px solid #5c3b1d; padding: 30px; background-color: #e09d41b0">
         <div>
-            <input id="expenseDescription" type="text" />
-            <input id="inputAmount" type="text" />
-            <button id="addExpense">+</button>
+            <h1>My Expense Calculator</h1>
         </div>
         <div>
-            <h3 id="desc"></h3>
-            <h3 id="amt"></h3>
+            <input id="expenseDescription" type="text" style="padding: 10px; font-size: 18px; margin: 10px"/>
+            <input id="inputAmount" type="text" style="padding: 10px; font-size: 18px; margin: 10px"/>
+            <button id="addExpense" style="padding: 5px; font-size: 19px; margin: 5px; background-color: #50a1fb; width: 50px;">+</button>
         </div>
-        <div id="expenseTable"></div>
         <div>
+            <h2 id="desc"></h2>
+            <h2 id="amt"></h2>
+        </div>
+        <div id="expenseTable" style="padding: 5px; font-size: 19px"></div>
+        <div style="padding: 5px;">
             <h1 id="total"></h1>
         </div>
     </div>
     <script>
         const totalHeadingElement = document.querySelector("#total");
         let totalExp = 0;
-        totalHeadingElement.textContent = totalExp;
+        totalHeadingElement.textContent = `Total: ${totalExp}`;
         const allExpense = [];
 
         const descContent = document.querySelector("#desc");
